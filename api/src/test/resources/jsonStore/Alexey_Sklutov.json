@@ -1,0 +1,75 @@
+{
+  "name" : "Alexey",
+  "surname" : "Sklutov",
+  "profession" : "QA automation engeneer",
+  "education" : "BSU",
+  "languages" : [ {
+    "language" : "English",
+    "level" : "B2"
+  }, {
+    "language" : "French",
+    "level" : "B1"
+  } ],
+  "domains" : [ "Education", "Finance" ],
+  "mainPageTitle" : "QA automation engineer with 5 years of experience",
+  "mainPageExperience" : "QA automation engineer with 5 years of experience in the field of software testing and knowledge of software QA methodologies, tools and QA processes. The technology stack includes Java as the main programming language and some of the most popular automation tools. Self-motivated, proactive, patient, responsible and attentive to details person with good communication skills.",
+  "mainDescriptions" : [ {
+    "title" : "Programming languages",
+    "description" : "Java, JavaScript, C++"
+  }, {
+    "title" : "Programming technologies",
+    "description" : "JNI, JavaFX, JDBC, JPA, LRS, LDAP, SMTP"
+  }, {
+    "title" : "Testing tools and frameworks",
+    "description" : "Fiddler, Postman , Swagger, DevTools, TestNG, JUnit, Appium, TestRail, Xcode, ADB, Android Studio, DBeaver, Selenium, Cucumber, TestNG, JMeter"
+  }, {
+    "title" : "Continuous integration tools",
+    "description" : "Jenkins, GitLab, CI/CD"
+  } ],
+  "projects" : [ {
+    "title" : "DATANGO",
+    "description" : "Integrated solutions for successful performance support, effective learning management and detailed documentation. With Datango, software implementations can be accelerated and user adoption can be significantly increased. Extensive usage analyses and integrated performance support measures also ideally promote the general transfer of knowledge.",
+    "role" : "QA Automation engineer",
+    "period" : "03.2020 – till now",
+    "responsibilities" : [ "Determination of levels and types of testing,  ñhoosing methodologies  and approaches for testing", "Made quality decisions (accepted or rejected) based on provided control outlines. Define test automation approaches. Work on test documentation from the test plan and test strategy level", "Reviewed production records for accuracy and compliance", "Maintained and organized all records, documentation, and other files associated with quality engineering and inspection tasks", "5+ years of experience with database software (Postgres, MySQL, etc), in writing complex SQL queries and stored procedures, and ETL in Java", "Come up with a new idea that improved things (suggest processes improvement, suggest new tools, start using TA patterns and best practices)", "Integrate automation in the development cycle. Setup and support CI/CD pipelines" ],
+    "tools" : "Jira, TestRail, Java, Selenium, Selenoid, Docker, TestNG, Maven, Postman, Swagger, JMeter, MSSQL, Logger, REST API, JSON, Kafka, JDBC, JPA, Git, SMTP, LDAP, LRS, JNI, Linux - Ubuntu, Jenkins, Fiddler, RabbitMQ"
+  }, {
+    "title" : "HELLO WORLD!",
+    "description" : "Significantly increased. Extensive usage analyses and integrated performance support measures also ideally promote the general transfer of knowledge.",
+    "role" : "QA Automation engineer",
+    "period" : "03.2020 – till now",
+    "responsibilities" : [ "Determination of levels and types of testing,  ñhoosing methodologies  and approaches for testing" ],
+    "tools" : "Jira, Jenkins, Fiddler, RabbitMQ"
+  } ],
+  "skills" : [ {
+    "name" : "CI/CD",
+    "tools" : [ {
+      "name" : "Jenkins",
+      "experience" : "2",
+      "lastUsed" : "2023"
+    }, {
+      "name" : "GitLab",
+      "experience" : "1",
+      "lastUsed" : "2022"
+    }, {
+      "name" : "Azure DevOps",
+      "experience" : "1",
+      "lastUsed" : "2020"
+    } ]
+  }, {
+    "name" : "Development languages",
+    "tools" : [ {
+      "name" : "Java",
+      "experience" : "4",
+      "lastUsed" : "2023"
+    }, {
+      "name" : "JavaScript",
+      "experience" : "1",
+      "lastUsed" : "2023"
+    }, {
+      "name" : "C++",
+      "experience" : "1",
+      "lastUsed" : "2022"
+    } ]
+  } ]
+}
