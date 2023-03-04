@@ -5,8 +5,10 @@ import {
   setPosition,
   setEducation,
   setCurrentStep,
-  setLanguageProficiency,
-  setDomains
+  setDomains,
+  addLanguage,
+  removeLanguage,
+  updateLanguage
 } from '../../context/slices/formSlice';
 import { Theme } from '../../components/Theme';
 import { ChangeEvent, FC, useEffect } from 'react';
@@ -14,16 +16,19 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { formState } from '../../context/slices/formSlice';
 import { Input } from '../../components/Input';
 import { useDebounce } from '../../hooks/debounce';
+import { TooltipHandler } from '../../components/TooltipHandler';
+import { Select } from '../../components/Select';
 
 export const Personal: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { name, position, education, languageProficiency, domains } = useAppSelector(formState);
+  const { name, position, education, languages, domains } = useAppSelector(formState);
   const debouncedName = useDebounce<string>(name);
   const debouncedPosition = useDebounce<string>(position);
   const debouncedEducation = useDebounce<string>(education);
-  const debouncedLanguageProficiency = useDebounce<string[]>(languageProficiency);
   const debouncedDomains = useDebounce<string[]>(domains);
+
+  const options = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
@@ -46,13 +51,6 @@ export const Personal: FC = () => {
     });
   };
 
-  const handleLanguageProficiencyChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: setLanguageProficiency,
-      payload: e.target.value
-    });
-  };
-
   const handleDomainsChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: setDomains,
@@ -60,14 +58,29 @@ export const Personal: FC = () => {
     });
   };
 
+  const handleAddLanguage = () => {
+    const newLanguage = {
+      id: new Date().getTime(),
+      language: '',
+      level: ''
+    };
+    dispatch(addLanguage(newLanguage));
+  };
+
+  const handleRemoveLanguage = (id: number) => {
+    if (languages.length === 1) {
+      alert("You can't remove all languages");
+    } else {
+      dispatch(removeLanguage({ id }));
+    }
+  };
+
+  const handleChange = (field: string, id: number, value: string) => {
+    dispatch(updateLanguage({ id, field, value }));
+  };
+
   const handleNextStep = () => {
-    if (
-      name !== '' &&
-      position !== '' &&
-      education !== '' &&
-      languageProficiency.length !== 0 &&
-      domains.length !== 0
-    ) {
+    if (name !== '' && position !== '' && education !== '' && domains.length !== 0) {
       navigate('/step2');
     } else {
       alert('Fill all data');
@@ -75,13 +88,7 @@ export const Personal: FC = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => {}, [
-    debouncedName,
-    debouncedPosition,
-    debouncedEducation,
-    debouncedLanguageProficiency,
-    debouncedDomains
-  ]);
+  useEffect(() => {}, [debouncedName, debouncedPosition, debouncedEducation, debouncedDomains]);
 
   useEffect(() => {
     dispatch({
@@ -111,11 +118,29 @@ export const Personal: FC = () => {
           handleChange={handleEducationChange}
           value={education}
         />
-        <Input
-          label="Language proficiency"
-          placeholder="English - B2, French - A2"
-          handleChange={handleLanguageProficiencyChange}
-        />
+        {languages.map(language => (
+          <div key={language.id}>
+            <TooltipHandler
+              className="tooltip-styles"
+              handleAdd={handleAddLanguage}
+              handleRemove={handleRemoveLanguage}
+              item={language}
+            />
+            <div className="component-wrapper">
+              <Input
+                label="Language proficiency"
+                placeholder="English"
+                value={language.language}
+                handleChange={e => handleChange('language', language.id, e.target.value)}
+              />
+              <Select
+                options={options}
+                value={language.level}
+                handleChange={e => handleChange('level', language.id, e.target.value)}
+              />
+            </div>
+          </div>
+        ))}
         <Input
           label="Domains"
           placeholder="Big Data, Fintech, Social networking, E-commerce"

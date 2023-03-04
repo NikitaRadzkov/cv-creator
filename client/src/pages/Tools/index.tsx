@@ -1,7 +1,7 @@
 import * as C from './styles';
 import { Theme } from '../../components/Theme';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   formState,
@@ -19,7 +19,7 @@ import { ReactComponent as UpIcon } from '../../icons/up.svg';
 import { ReactComponent as DownIcon } from '../../icons/down.svg';
 import { Colors } from '../../shared/colors';
 
-export const Tools = () => {
+export const Tools: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { professionalTools, professionalSkills, name } = useAppSelector(formState);
@@ -35,11 +35,7 @@ export const Tools = () => {
   };
 
   const handleNextStep = () => {
-    if (professionalSkills.length < 0) {
-      navigate('/step5');
-    } else {
-      alert('fill in the data correctly');
-    }
+    navigate('/step5');
   };
 
   useEffect(() => {
@@ -118,6 +114,7 @@ export const Tools = () => {
                 className="section-input"
                 label="Section name"
                 placeholder="Operating system"
+                value={professionalSkill.sectionName}
                 handleChange={e => handleChangeProfessionalSkill('sectionName', professionalSkill.id, e.target.value)}
                 autoFocus={true}
               />
@@ -149,11 +146,13 @@ export const Tools = () => {
                         <Input
                           label="Tool name"
                           placeholder="MS Windows"
+                          value={professionalTool.name}
                           handleChange={e => handleChangeProfessionalTool('name', professionalTool.id, e.target.value)}
                         />
                         <Input
                           label="Experience in years"
                           placeholder="10"
+                          value={professionalTool.experience}
                           handleChange={e =>
                             handleChangeProfessionalTool('experience', professionalTool.id, e.target.value)
                           }
@@ -161,6 +160,7 @@ export const Tools = () => {
                         <Input
                           label="Last used"
                           placeholder="2023"
+                          value={professionalTool.lastUsed}
                           handleChange={e =>
                             handleChangeProfessionalTool('lastUsed', professionalTool.id, e.target.value)
                           }

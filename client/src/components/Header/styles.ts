@@ -11,6 +11,6 @@ export const Container = styled.div`
     font-weight: bold;
   }
   p {
-    padding: 5px 0 10px 40px;
+    padding: 5px 0 10px 35px;
   }
 `;
