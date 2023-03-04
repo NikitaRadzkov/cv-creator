@@ -34,6 +34,16 @@ public class MainPageController {
   @Autowired
   DocumentService documentService;
 
+  @RequestMapping(value = "/{path:[^\\.]*}")
+  public String redirect() {
+      return "forward:/";
+  }
+
+  @GetMapping("/")
+  public String index() {
+    return "index";
+  }
+
   @GetMapping
   public String openMainPage() {
     documentService.setDocument(FileUtils.receiveDocument(Config.PATTERN_CS));
