@@ -34,12 +34,19 @@ interface IProfessionalSkill {
   [key: string]: unknown;
 }
 
+interface ILanguage {
+  id: number;
+  language: string;
+  level: string;
+  [key: string]: string | number;
+}
+
 interface State {
   currentStep: number;
   name: string;
   position: string;
   education: string;
-  languageProficiency: string[];
+  languages: ILanguage[];
   domains: string[];
   projects: IProject[];
   skills: ISkill[];
@@ -54,7 +61,7 @@ const initialState: State = {
   name: 'Anakin Skywalker',
   position: 'QA Engineer',
   education: 'Higher Education in Computer Science and Software Engineering',
-  languageProficiency: [],
+  languages: [{ id: 1, language: 'English', level: 'A1' }],
   domains: [],
   projects: [{ id: 1, name: '', description: '', role: '', period: '', responsibilities: '', tools: '' }],
   skills: [{ id: 1, name: '', description: '' }],
@@ -80,9 +87,22 @@ export const formSlice = createSlice({
     setEducation: (state, action: PayloadAction<string>) => {
       state.education = action.payload;
     },
-    setLanguageProficiency: (state, action: PayloadAction<string>) => {
-      state.languageProficiency = action.payload.split(',').map(item => item.trim());
+    addLanguage: (state, action: PayloadAction<ILanguage>) => {
+      state.languages.push(action.payload);
     },
+    removeLanguage: (state, action: PayloadAction<{ id: number }>) => {
+      state.languages = state.languages.filter(language => language.id !== action.payload.id);
+    },
+    updateLanguage: (state, action) => {
+      const { id, field, value } = action.payload;
+      const languageToUpdate = state.languages.find(language => language.id === id);
+      if (languageToUpdate) {
+        languageToUpdate[field] = value;
+      }
+    },
+    // setLanguageProficiency: (state, action: PayloadAction<string>) => {
+    //   state.languageProficiency = action.payload.split(',').map(item => item.trim());
+    // },
     setDomains: (state, action: PayloadAction<string>) => {
       state.domains = action.payload.split(',').map(item => item.trim());
     },
@@ -152,10 +172,12 @@ export const {
   setName,
   setPosition,
   setEducation,
-  setLanguageProficiency,
   setDomains,
   setMainPageTitle,
   setMainPageExperience,
+  addLanguage,
+  removeLanguage,
+  updateLanguage,
   addProject,
   removeProject,
   updateProject,
