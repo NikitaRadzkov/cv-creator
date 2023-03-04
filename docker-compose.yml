@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  backend:
+    build: .
+    ports:
+      - '8443:8443'
+    volumes:
+      - ./api/src/main/resources/static:/usr/local/lib/api/static
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+    command: serve -s build
+
