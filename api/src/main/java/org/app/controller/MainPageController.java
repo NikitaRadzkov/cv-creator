@@ -34,22 +34,14 @@ public class MainPageController {
   @Autowired
   DocumentService documentService;
 
-  @RequestMapping(value = "/{path:[^\\.]*}")
-  public String redirect() {
-      return "forward:/";
-  }
-
-  @GetMapping("/")
-  public String index() {
-    return "index";
-  }
-
+  @CrossOrigin(origins = "${CLIENT_URL}")
   @GetMapping
-  public String openMainPage() {
+  public ResponseEntity<String> openMainPage() {
     documentService.setDocument(FileUtils.receiveDocument(Config.PATTERN_CS));
-    return "mainPage";
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
+  @CrossOrigin(origins = "${CLIENT_URL}")
   @RequestMapping(value = SAVE_REQUEST, method = RequestMethod.POST)
   public ResponseEntity<Resource> generateCV(@RequestBody Map<String, Object> payload) {
     CVPojo cv = new CVPojo().getInstance(payload);
@@ -76,6 +68,7 @@ public class MainPageController {
     return documentService.downloadCV(fileName + DOCX, new File(DOWNLOAD_PATH + CV_fileName + DOCX), Config.PATTERN_CS);
   }
 
+  @CrossOrigin(origins = "${CLIENT_URL}")
   @RequestMapping(value = UPLOAD_REQUEST, method = RequestMethod.POST)
   public ResponseEntity<String> uploadFile(@RequestParam(FILE) MultipartFile file) {
     try {

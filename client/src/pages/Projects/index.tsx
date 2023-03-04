@@ -110,7 +110,6 @@ export const Projects: FC = () => {
                   label="Project role"
                   value={project.role}
                   placeholder="QA Automation Engineer"
-                  autoFocus={true}
                   handleChange={e => handleChange('role', project.id, e.target.value)}
                 />
                 <Input
@@ -118,7 +117,6 @@ export const Projects: FC = () => {
                   value={project.period}
                   placeholder="03.2022 - till now"
                   className="component-wrapper-period"
-                  autoFocus={true}
                   handleChange={e => handleChange('period', project.id, e.target.value)}
                 />
                 <label>Responsibilities & achievements</label>
