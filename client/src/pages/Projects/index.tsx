@@ -39,7 +39,8 @@ export const Projects: FC = () => {
       description: '',
       role: '',
       period: '',
-      responsibilities: ''
+      responsibilities: '',
+      tools: ''
     };
     dispatch(addProject(newProject));
   };
@@ -95,6 +96,13 @@ export const Projects: FC = () => {
                   placeholder="Facebook, Inc. is an American social media and technology company based in Menlo Park, California."
                   value={project.description}
                   onChange={e => handleChange('description', project.id, e.target.value)}
+                />
+                <Input
+                  label="Tools"
+                  value={project.tools}
+                  placeholder="Jira, Confluence, Test Rail"
+                  className="component-wrapper-tools"
+                  handleChange={e => handleChange('tools', project.id, e.target.value)}
                 />
               </div>
               <div className="component-wrapper-right">

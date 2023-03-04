@@ -8,6 +8,7 @@ interface IProject {
   role: string;
   period: string;
   responsibilities: string;
+  tools: string;
   [key: string]: string | number;
 }
 
@@ -55,7 +56,7 @@ const initialState: State = {
   education: 'Higher Education in Computer Science and Software Engineering',
   languageProficiency: [],
   domains: [],
-  projects: [{ id: 1, name: '', description: '', role: '', period: '', responsibilities: '' }],
+  projects: [{ id: 1, name: '', description: '', role: '', period: '', responsibilities: '', tools: '' }],
   skills: [{ id: 1, name: '', description: '' }],
   mainPageTitle: 'QA Engineer with 5 years of experience.',
   mainPageExperience: 'Highly skilled and motivated QA specialist with 5 years of experience in commercial projects.',

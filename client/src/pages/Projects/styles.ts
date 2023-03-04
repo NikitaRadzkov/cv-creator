@@ -105,4 +105,8 @@ export const Container = styled.div`
   .component-footer {
     margin-bottom: 20px;
   }
+
+  .component-wrapper-tools label {
+    margin-top: 20px;
+  }
 `;
