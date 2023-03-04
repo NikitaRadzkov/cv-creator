@@ -22,7 +22,6 @@ export const Upload: FC = () => {
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     setSelectedFile(file);
-    console.log('Selected file:', file);
   };
 
   useEffect(() => {

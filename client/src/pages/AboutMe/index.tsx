@@ -66,8 +66,6 @@ export const AboutMe: FC = () => {
       description: ''
     };
     dispatch(addSkill(newSkill));
-
-    console.log('test');
   };
 
   const handleRemoveSkill = (id: number) => {
