@@ -23,8 +23,8 @@ jobs:
           file: ./docker-compose.yml
           push: true
           tags: |
-            gcr.io/${{ github.repository }}/backend:${{ github.sha }}
-            gcr.io/${{ github.repository }}/frontend:${{ github.sha }}
+            gcr.io/nikitaradzkov/backend:${{ github.sha }}
+            gcr.io/nikitaradzkov/frontend:${{ github.sha }}
           platforms: linux/amd64
 
       - name: Deploy to GitHub Pages
