@@ -22,8 +22,8 @@ jobs:
           context: .
           push: true
           tags: |
-            gcr.io/nikitaradzkov/backend:${{ github.sha }}
-            gcr.io/nikitaradzkov/frontend:${{ github.sha }}
+            nikitaradzkov/backend:${{ github.sha }}
+            nikitaradzkov/frontend:${{ github.sha }}
           platforms: linux/amd64
 
       - name: Deploy to GitHub Pages
@@ -31,3 +31,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./client/build
+
+      - name: Deploy Spring Boot app
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./api/src/main/resources/static
