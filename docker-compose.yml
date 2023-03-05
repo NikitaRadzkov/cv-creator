@@ -2,12 +2,16 @@ version: '3.7'
 
 services:
   backend:
+    environment:
+      - CLIENT_URL=http://localhost:3000
     build: .
     ports:
       - '8443:8443'
     volumes:
       - ./api/src/main/resources/static:/usr/local/lib/api/static
   frontend:
+    entrypoint:
+      - API_URL=https://localhost:8443
     build:
       context: ./client
       dockerfile: Dockerfile
