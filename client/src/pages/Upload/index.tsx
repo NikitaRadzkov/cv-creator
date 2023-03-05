@@ -77,16 +77,16 @@ export const Upload: FC = () => {
       const formData = new FormData();
       formData.append('file', selectedFile);
       try {
-        await fetch(`http://35.228.141.206:8443/`, {
+        await fetch(`https://35.228.141.206:8443/`, {
           method: 'GET'
         });
 
-        await fetch(`http://35.228.141.206:8443/uploadPhoto`, {
+        await fetch(`https://35.228.141.206:8443/uploadPhoto`, {
           method: 'POST',
           body: formData
         });
 
-        const response = await fetch(`http://35.228.141.206:8443/save`, {
+        const response = await fetch(`https://35.228.141.206:8443/save`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
