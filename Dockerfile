@@ -14,13 +14,3 @@ RUN mkdir -p /usr/local/lib/api/photo
 RUN mkdir -p /usr/local/lib/api/unpacking
 COPY --from=build /home/app/api/pattern.docx /usr/local/lib/api/pattern.docx
 ENTRYPOINT ["java","-jar","/usr/local/lib/app.jar"]
-
-FROM node:16-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-RUN npm install \
-  npm install -g serve
-COPY . .
-RUN npm run build
-
