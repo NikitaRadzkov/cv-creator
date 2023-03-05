@@ -5,7 +5,7 @@ services:
     image: gcr.io/nikitaradzkov/cv-creator/backend:latest
     build: .
     ports:
-      - '${EXTERNAL_IP_ADDRESS}:8443:8443'
+      - '8443:8443'
     volumes:
       - ./api/src/main/resources/static:/usr/local/lib/api/static
   frontend:
@@ -14,8 +14,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - '${EXTERNAL_IP_ADDRESS}:3000:3000'
+      - '3000:3000'
     depends_on:
       - backend
     command: serve -s build
-

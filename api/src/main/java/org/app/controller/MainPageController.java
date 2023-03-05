@@ -34,14 +34,14 @@ public class MainPageController {
   @Autowired
   DocumentService documentService;
 
-  @CrossOrigin(origins = "${CLIENT_URL}")
+  @CrossOrigin(origins = "http://35.228.141.206:3000")
   @GetMapping
   public ResponseEntity<String> openMainPage() {
     documentService.setDocument(FileUtils.receiveDocument(Config.PATTERN_CS));
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @CrossOrigin(origins = "${CLIENT_URL}")
+  @CrossOrigin(origins = "http://35.228.141.206:3000")
   @RequestMapping(value = SAVE_REQUEST, method = RequestMethod.POST)
   public ResponseEntity<Resource> generateCV(@RequestBody Map<String, Object> payload) {
     CVPojo cv = new CVPojo().getInstance(payload);
@@ -68,7 +68,7 @@ public class MainPageController {
     return documentService.downloadCV(fileName + DOCX, new File(DOWNLOAD_PATH + CV_fileName + DOCX), Config.PATTERN_CS);
   }
 
-  @CrossOrigin(origins = "${CLIENT_URL}")
+  @CrossOrigin(origins = "http://35.228.141.206:3000")
   @RequestMapping(value = UPLOAD_REQUEST, method = RequestMethod.POST)
   public ResponseEntity<String> uploadFile(@RequestParam(FILE) MultipartFile file) {
     try {
